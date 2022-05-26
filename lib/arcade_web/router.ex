@@ -23,6 +23,12 @@ defmodule ArcadeWeb.Router do
     get "/", PageController, :index
   end
 
+  scope "/", ArcadeWeb do
+    pipe_through [:browser, :require_authenticated_user]
+
+    live "/survey", SurveyLive, :index
+  end
+
   # Other scopes may use custom stacks.
   # scope "/api", ArcadeWeb do
   #   pipe_through :api
